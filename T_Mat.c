@@ -5,7 +5,10 @@
 #define columnas 4
 #define filas 4
 
-char teclas[filas][Columnas] = {
+int columnas[columnas] = {0,1,2,3};
+int filas[filas] = {4,5,6,7};
+
+char teclas[filas][columnas] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
@@ -15,11 +18,11 @@ char teclas[filas][Columnas] = {
 
 void GPIOS() {
     SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;  
-    for (int i = 0; i <(filas + columnas); i++){
-        i < columnas? PORTA->PCR[i] |= PORT_PCR_MUX(1): ;
-        i >= columnas? PORTA->PCR[i] |= PORT_PCR_PE_MASK | PORT_PCR_PS_MASK: ;
+    for (int i = 0; i < columnas; i++){
+        PORTA->PCR[columnas[i]]|=PORT_PCR_MUX(1)|PORT_PCR_PE_MASK|PORT_PCR_PS_MASK;
     }
-    for (int i = 4; i <(filas + columnas) ; i++){
+    for (int i = 0; i <filas ; i++){
+        PORTA->PCR[filas[i]] |= PORT_PCR_MUX(1);
         PTA -> PSOR|= (1<<i);
     }
 }
