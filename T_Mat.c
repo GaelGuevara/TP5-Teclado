@@ -19,7 +19,7 @@ char teclas[filas][columnas] = {
 void GPIOS() {
     SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;  
     for (int i = 0; i < columnas; i++){
-        PORTA->PCR[columnas[i]]|=PORT_PCR_MUX(1)|PORT_PCR_PE_MASK|PORT_PCR_PS_MASK;
+        PORTA->PCR[columnas[i]]|=PORT_PCR_MUX(0)|PORT_PCR_PE_MASK|PORT_PCR_PS_MASK;
     }
     for (int i = 0; i <filas ; i++){
         PORTA->PCR[filas[i]] |= PORT_PCR_MUX(1);
