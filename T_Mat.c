@@ -29,9 +29,9 @@ void GPIOS() {
 
 char keyLogger(){
     for (int i = 0; i < filas; i++){
-        PTA -> PSOR|= (0<<i);
+        PTA -> PSOR|= (0<<filas[i]);
         for (int j = 0; j < columnas; j++){
-            if (!(PTA-> PDIR&(1<<j))){
+            if (!(PTA-> PDIR&(1<<columnas[j]))){
                 return teclas[i][j];
             }
         }
